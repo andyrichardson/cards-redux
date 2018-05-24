@@ -55,7 +55,7 @@ export class DeckStore {
   private createDeck() {
     for (const suit in Suit) {
       // tslint:disable-next-line
-      const cards = this.createSuitCards(suit as Suit);
+      const cards = this.createSuitCards(Suit[suit] as Suit);
       this.pDeck = [...this.pDeck, ...cards];
     }
   }
@@ -65,7 +65,7 @@ export class DeckStore {
 
     for (const rank in Rank) {
       // tslint:disable-next-line
-      ranks.push({ suit, rank: rank as Rank });
+      ranks.push({ suit, rank: Rank[rank] as Rank });
     }
 
     return ranks;

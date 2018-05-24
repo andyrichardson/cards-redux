@@ -55,14 +55,21 @@ export class Card extends React.Component<CardProps, CardState> {
 
     return (
       <>
-        <text x="5" y="35" fill={this.color} transform={transform}>
+        <text
+          x="30"
+          y="48"
+          textAnchor="middle"
+          fill={this.color}
+          transform={transform}
+        >
           {abbreviation}
         </text>
         <image
-          x="0"
-          y="45"
-          width="32"
-          height="32"
+          x="17"
+          textAnchor="middle"
+          y="58"
+          width="24"
+          height="24"
           xlinkHref={SuitImages[this.props.suit]}
           fill="red"
           transform={transform}
@@ -74,10 +81,22 @@ export class Card extends React.Component<CardProps, CardState> {
   private getDescription() {
     return (
       <>
-        <text x="164" y="220" textAnchor="middle" fill={this.color}>
+        <text
+          x="164"
+          y="220"
+          textAnchor="middle"
+          fill={this.color}
+          style={{ fontWeight: 400 }}
+        >
           {this.props.rank} of
         </text>
-        <text x="164" y="260" textAnchor="middle" fill={this.color}>
+        <text
+          x="164"
+          y="260"
+          textAnchor="middle"
+          fill={this.color}
+          style={{ fontWeight: 600 }}
+        >
           {`${this.props.suit}s`}
         </text>
       </>
@@ -87,17 +106,14 @@ export class Card extends React.Component<CardProps, CardState> {
 
 const CardBase = styled.div`
   display: inline-block;
-  background: #aaa;
-  border-radius: 7px;
-  padding: 20px;
-
-  min-width: 200px;
+  background: #fff;
+  border-radius: 3%;
+  width: 200px;
 `;
 
 const SvgBase = styled.svg`
-  background: #aaa;
   font-family: 'Roboto';
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 500;
   width: 100%;
 `;
