@@ -1,7 +1,7 @@
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
 import styled from 'styled-components';
-import { Card, Deck } from './components';
+import { ActionButtons, Card, Deck } from './components';
 import { DeckStore, ThemeStore } from './stores';
 
 const stores = {
@@ -17,6 +17,7 @@ class App extends React.Component {
         <AppContainer>
           <DeckContainer>
             <Deck />
+            <ActionButtons />
           </DeckContainer>
           <Table className="table">
             {stores.deckStore.table.map((card, index) => (
@@ -42,6 +43,7 @@ const AppContainer = styled.div`
 const DeckContainer = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   min-width: 400px;
   padding: 200px 0;
