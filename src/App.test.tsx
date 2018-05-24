@@ -1,9 +1,9 @@
+import { expect } from 'chai';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as TestRenderer from 'react-test-renderer';
 import App from './App';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const testRender = TestRenderer.create(<App />);
+  expect(testRender).to.be.an('object');
 });

@@ -1,8 +1,14 @@
 import { action, computed, observable } from 'mobx';
+import { Rank, Suit } from '../typings';
+
+interface CardEntry {
+  suit: Suit;
+  rank: Rank;
+}
 
 export class DeckStore {
-  @observable private pDeck: any[] = [];
-  @observable private pTable: any[] = [];
+  @observable private pDeck: CardEntry[] = [];
+  @observable private pTable: CardEntry[] = [];
 
   constructor() {
     this.createDeck();
@@ -20,8 +26,10 @@ export class DeckStore {
 
   @action
   public draw() {
-    const card = this.pDeck.pop();
-    this.pTable.push(card);
+    if (this.pDeck.length > 0) {
+      const card = this.pDeck.pop() as CardEntry;
+      this.pTable.push(card);
+    }
   }
 
   @action
@@ -45,23 +53,21 @@ export class DeckStore {
 
   @action
   private createDeck() {
-    const suits = ['heart', 'spade', 'diamond', 'club'];
-
-    suits.forEach(suit => {
-      const cards = this.createSuitCards(suit);
+    for (const suit in Suit) {
+      // tslint:disable-next-line
+      const cards = this.createSuitCards(suit as Suit);
       this.pDeck = [...this.pDeck, ...cards];
-    });
+    }
   }
 
-  private createSuitCards(suit: string) {
-    const ranks = [
-      'ace',
-      'king',
-      'queen',
-      'jack',
-      ...Array.from({ length: 9 }, (v, k) => k + 2),
-    ];
+  private createSuitCards(suit: Suit) {
+    const ranks = [];
 
-    return ranks.map(rank => ({ suit, rank }));
+    for (const rank in Rank) {
+      // tslint:disable-next-line
+      ranks.push({ suit, rank: rank as Rank });
+    }
+
+    return ranks;
   }
 }
