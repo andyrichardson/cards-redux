@@ -1,6 +1,6 @@
 import { observer, Provider } from 'mobx-react';
 import * as React from 'react';
-import { Card } from './components';
+import { Card, Deck } from './components';
 import { DeckStore, ThemeStore } from './stores';
 import { Rank, Suit } from './typings';
 
@@ -14,7 +14,10 @@ class App extends React.Component {
   public render() {
     return (
       <Provider {...stores}>
-        <Card rank={Rank.EIGHT} suit={Suit.HEART} />
+        <>
+          <Deck />
+          <Card rank={Rank.EIGHT} suit={Suit.HEART} />
+        </>
       </Provider>
     );
   }
