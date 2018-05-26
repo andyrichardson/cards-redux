@@ -14,15 +14,41 @@ export class ActionButtons extends React.Component<ActionButtonsProps, any> {
 
   public render() {
     return (
-      <ButtonContainer>
-        <Button src={require('../images/shuffle.svg')} onClick={this.shuffle} />
-        <Button src={require('../images/reset.svg')} onClick={this.reset} />
-      </ButtonContainer>
+      <>
+        <ButtonContainer>
+          <Button
+            src={require('../images/shuffle.svg')}
+            onClick={this.shuffle}
+          />
+          <Button src={require('../images/reset.svg')} onClick={this.reset} />
+          {this.getSortButton()}
+        </ButtonContainer>
+      </>
     );
   }
 
   private shuffle = () => this.props.deckStore.shuffle();
   private reset = () => this.props.deckStore.reset();
+  private sort = () =>
+    this.props.deckStore.table.length > 1
+      ? this.props.deckStore.sortTable()
+      : null;
+
+  private getSortButton() {
+    let className: string;
+
+    if (this.props.deckStore.table.length < 2) {
+      className = 'disabled';
+    }
+
+    return (
+      <Button
+        src={require('../images/sort.svg')}
+        onClick={this.sort}
+        className={className}
+      />
+    );
+  }
 }
 
 const ButtonContainer = styled.div``;
@@ -36,5 +62,9 @@ const Button = styled.img`
   &:hover {
     cursor: pointer;
     opacity: 1;
+  }
+
+  &.disabled {
+    opacity: 0.2;
   }
 `;

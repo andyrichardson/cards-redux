@@ -52,6 +52,17 @@ export class DeckStore {
   }
 
   @action
+  public sortTable() {
+    this.pTable = this.pTable.sort((a, b) => {
+      if (a.suit !== b.suit) {
+        return this.getSuitIndex(b.suit) - this.getSuitIndex(a.suit);
+      }
+
+      return this.getRankIndex(b.rank) - this.getRankIndex(a.rank);
+    });
+  }
+
+  @action
   private createDeck() {
     for (const suit in Suit) {
       // tslint:disable-next-line
@@ -69,5 +80,20 @@ export class DeckStore {
     }
 
     return ranks;
+  }
+
+  private getRankIndex(rank: Rank) {
+    const pictureRank = [Rank.JACK, Rank.QUEEN, Rank.KING, Rank.ACE];
+
+    if (isNaN(parseInt(rank))) {
+      return pictureRank.indexOf(rank) + 11;
+    }
+
+    return parseInt(rank);
+  }
+
+  private getSuitIndex(suit: Suit) {
+    const suitOrder = [Suit.DIAMOND, Suit.HEART, Suit.SPADE, Suit.CLUB];
+    return suitOrder.indexOf(suit);
   }
 }
