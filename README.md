@@ -4,6 +4,10 @@
 
 # Cards
 
+## About
+
+A demonstration project using React, Typescript, Mobx and more. See the live demo [here](https://andyrichardson.github.io/cards/).
+
 ## Requirements
 
 The application can be run in one of two environments - Docker and Node.
@@ -20,32 +24,22 @@ The application can be run in one of two environments - Docker and Node.
 
 <br>
 
-## Preparation
+## Usage
 
-Install dependencies
+### Docker
+
+    # Production
+    docker-compose up prod
+
+    # Development
+    docker-compose up dev
+
+### Node
 
     npm install
 
-<br>
-
-## Usage
-
-### Production
-
-**Docker**
-
-    docker-compose up -d prod
-
-**Node**
-
+    # Production
     npm run build && npm start
 
-### Development
-
-**Docker**
-
-    docker-compose up dev
-
-**Node**
-
+    # Development
     npm run dev
