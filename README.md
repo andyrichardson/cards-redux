@@ -1,4 +1,5 @@
 [![CircleCI](https://img.shields.io/circleci/project/github/andyrichardson/cards.svg)](https://circleci.com/gh/andyrichardson/cards/)
+[![Coverage Status](https://coveralls.io/repos/github/andyrichardson/cards/badge.svg?branch=18-display-code-coverage)](https://coveralls.io/github/andyrichardson/cards?branch=18-display-code-coverage)
 [![Issues](https://img.shields.io/github/issues/andyrichardson/cards.svg)](https://circleci.com/gh/andyrichardson/cards/)
 
 # Cards
