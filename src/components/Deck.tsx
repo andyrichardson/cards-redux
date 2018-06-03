@@ -14,6 +14,10 @@ export class Deck extends React.Component<any> {
             src={require('../images/shuffle.svg')}
             onClick={this.props.shuffleDeck}
           />
+          <Button
+            src={require('../images/reset.svg')}
+            onClick={this.props.resetDeck}
+          />
         </ButtonContainer>
       </>
     );
