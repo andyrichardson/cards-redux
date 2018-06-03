@@ -1,7 +1,5 @@
-import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import styled from 'styled-components';
-import { ThemeStore } from '../stores';
 import { Rank, Suit } from '../typings';
 
 const SuitImages = {
@@ -14,15 +12,12 @@ const SuitImages = {
 interface CardProps {
   rank: Rank;
   suit: Suit;
-  themeStore?: ThemeStore;
 }
 
 interface CardState {
   visible: boolean;
 }
 
-@inject('themeStore')
-@observer
 export class Card extends React.Component<CardProps, CardState> {
   public props: CardProps;
   public state: CardState;
@@ -43,8 +38,7 @@ export class Card extends React.Component<CardProps, CardState> {
     const isBlack =
       this.props.suit === Suit.CLUB || this.props.suit === Suit.SPADE;
 
-    const color = isBlack ? 'black' : 'red';
-    return this.props.themeStore.color[color];
+    return isBlack ? '#555555' : '#EA5656';
   }
 
   private getCorner(inverted = false) {

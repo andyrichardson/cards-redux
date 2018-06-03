@@ -1,4 +1,4 @@
-import { SHUFFLE } from '../actions';
+import { DRAW, SHUFFLE } from '../actions';
 import { CardEntry, Rank, Suit } from '../typings';
 
 interface ApplicationState {
@@ -12,11 +12,18 @@ export const DeckReducer = (state: ApplicationState, action: any) => {
   }
 
   switch (action.type) {
+    case DRAW:
+      return draw(state);
+
     case SHUFFLE:
       return shuffle(state);
+
+    default:
+      return state;
   }
 };
 
+/* INITIAL STATE */
 function getInitialState() {
   let deck: CardEntry[] = [];
   const table: CardEntry[] = [];
@@ -38,6 +45,16 @@ function createSuitCards(suit: Suit) {
   }
 
   return ranks;
+}
+
+/* ACTIONS */
+function draw(state: ApplicationState) {
+  const deck = [...state.deck];
+  const table = [...state.table];
+
+  table.push(deck.pop());
+
+  return { deck, table };
 }
 
 function shuffle(state: ApplicationState) {

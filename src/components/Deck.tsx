@@ -1,26 +1,43 @@
-import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import styled from 'styled-components';
-import { DeckStore } from '../stores';
 
-interface DeckProps {
-  deckStore?: DeckStore;
-}
-
-@inject('deckStore')
-@observer
-export class Deck extends React.Component<DeckProps, any> {
-  public props: DeckProps;
-
+export class Deck extends React.Component<any> {
   public render() {
     return (
-      <DeckImage src={require('../images/deck.svg')} onClick={this.draw} />
+      <>
+        <DeckImage
+          src={require('../images/deck.svg')}
+          onClick={this.props.drawCard}
+        />
+        <ButtonContainer>
+          <Button
+            src={require('../images/shuffle.svg')}
+            onClick={this.props.shuffleDeck}
+          />
+        </ButtonContainer>
+      </>
     );
   }
-
-  private draw = () => this.props.deckStore.draw();
 }
 
 const DeckImage = styled.img`
   width: 200px;
+`;
+
+const ButtonContainer = styled.div``;
+
+const Button = styled.img`
+  opacity: 0.7;
+  padding: 20px;
+  transition: opacity 250ms;
+  width: 40px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+
+  &.disabled {
+    opacity: 0.2;
+  }
 `;
